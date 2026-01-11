@@ -23,22 +23,6 @@ namespace MarkysSuitDrinkSystem.Patches
     [HarmonyPatch(typeof(Suit))]
     public class Suit_Patch
     {
-        [HarmonyPatch("OnAtmosphericTick")]
-        [HarmonyPostfix]
-        public static void OnAtmosphericTick_Postfix_Patch(Suit __instance)
-        {
-            if (__instance.ParentEntity is null)
-            {
-                return;
-            }
-
-            var waterTank = __instance.Slots.FirstOrDefault(v => v.StringHash == PatchData.SlotNameHash).Get<GasCanister>();
-            if (waterTank is null)
-            {
-                return;
-            }
-        }
-
         [HarmonyPatch("GetContextualName")]
         [HarmonyPrefix]
         public static bool GetContextualName_Prefix_Patch(ref string __result, Interactable interactable)
