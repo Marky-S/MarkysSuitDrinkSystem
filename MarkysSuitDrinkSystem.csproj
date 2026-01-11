@@ -1,0 +1,121 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyTitle>MarkysSuitDrinkSystem</AssemblyTitle>
+        <Product>MarkysCoreLibMarkysCustomDifficultyEasyBuilding</Product>
+        <Version>0.1.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RootNamespace>MarkysSuitDrinkSystem</RootNamespace>
+		<DebugType>embedded</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GameDir>D:\SteamLibrary\steamapps\common\Stationeers</GameDir>
+        <BepInExDir>$(GameDir)\BepInEx</BepInExDir>
+        <WorkshopDir>$(USERPROFILE)\Documents\My Games\Stationeers\mods</WorkshopDir>
+    </PropertyGroup>
+
+	<ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(GameDir)\rocketstation_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+		<Reference Include="Unity.TextMeshPro">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.AnimationModule">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.UI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UniTask">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\UniTask.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="ICSharpCode.SharpZipLib">
+			<HintPath>$(GameDir)\rocketstation_Data\Managed\ICSharpCode.SharpZipLib.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+        <Reference Include="BepInEx">
+            <HintPath>$(BepInExDir)\core\BepInEx.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="BepInEx.Harmony">
+            <HintPath>$(BepInExDir)\core\BepInEx.Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(BepInExDir)\core\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+		<Reference Include="MarkysCoreLib">
+			<HintPath>$(WorkshopDir)\MarkysCoreLib\MarkysCoreLib.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="StationeersMods.Interface">
+			<HintPath>$(BepInExDir)\plugins\StationeersMods.Interface.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="About\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <Compile Remove="assets\**" />
+        <EmbeddedResource Remove="assets\**" />
+        <None Remove="assets\**" />
+        <None Update="About\Preview.jpg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="About\Preview.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Remove="GameData\dont.remove" />
+    </ItemGroup>
+
+	<Target Name="CopyToScriptsFolder" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug'">
+		<PropertyGroup>
+			<ScriptsFolder>$(BepInExDir)\scripts\$(TargetName)</ScriptsFolder>
+		</PropertyGroup>
+		<MakeDir Directories="$(ScriptsFolder)" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ScriptsFolder)" />
+		<Message Text="Mod copied to $(ScriptsFolder) for hot-reload (F6)" Importance="high" />
+	</Target>
+
+    <Target Name="CopyToWorkshopFolder" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
+        <MakeDir Directories="$(WorkshopDir)\$(AssemblyTitle)" />
+        <MakeDir Directories="$(WorkshopDir)\$(AssemblyTitle)\About" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(WorkshopDir)\$(AssemblyTitle)" />
+        <Copy SourceFiles="About\about.xml" DestinationFiles="$(WorkshopDir)\$(AssemblyTitle)\About\about.xml" />
+        <Copy SourceFiles="About\thumb.png" DestinationFiles="$(WorkshopDir)\$(AssemblyTitle)\About\thumb.png" />
+        <Copy SourceFiles="About\Preview.png" DestinationFiles="$(WorkshopDir)\$(AssemblyTitle)\About\Preview.png" />
+    </Target>
+</Project>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>Marky's Suit Drink System</Name>
+	<Author>Marky</Author>
+	<Version>0.1.0</Version>
+	<Description>
+		[h1]Marky's Suit Drink System[/h1]
+		[b]WARNING:[/b] This is a [url=https://github.com/StationeersLaunchPad/StationeersLaunchPad] StationeersLaunchPad Plugin Mod[/url]. It requires BepInEx to be installed with the StationeersLaunchPad plugin.
+
+		[h3]Features[/h3]
+		[list]
+		[*]Drink directly in your spacesuit using a special button in the menu. Water will be drawn from the water tank installed in a special slot.
+		[/list]
+
+
+		[url=https://github.com/Marky-S/MarkysSuitDrinkSystem] Source Code [/url]
+	</Description>
+	<ChangeLog>
+		0.1.0:
+		- Initial release.
+	</ChangeLog>
+	<WorkshopHandle>3644610659</WorkshopHandle>
+	<Tags>
+		<Tag>QoL</Tag>
+		<Tag>BepInEx</Tag>
+		<Tag>StationeersLaunchPad</Tag>
+	</Tags>
+	<InGameDescription>
+		<![CDATA[
+<size=30><color=#ffa500>Marky's Suit Drink System</color></size>
+<b>WARNING:</b> <color=#ff0000>This is a StationeersLaunchPad Plugin Mod. It requires BepInEx to be installed.</color>
+
+Drink directly in your spacesuit using a special button in the menu. Water will be drawn from the water tank installed in a special slot
+
+Source Code: https://github.com/Marky-S/MarkysSuitDrinkSystem
+]]>
+	</InGameDescription>
+</ModMetadata>
